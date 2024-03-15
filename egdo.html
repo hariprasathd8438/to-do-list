@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<link rel="stylesheet" href="egdo.css">
+</head>
+<body>
+<div id="todo-container">
+  <h2>To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Add new task">
+  <button onclick="addTask()">Add</button>
+  <ul id="taskList"></ul>
+</div>
+<script>
+  function addTask() {
+    var taskInput = document.getElementById("taskInput");
+    var taskList = document.getElementById("taskList");
+    var task = taskInput.value.trim();
+
+    if (task !== "") {
+      var li = document.createElement("li");
+      li.textContent = task;
+
+      var deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.onclick = function() {
+        taskList.removeChild(li);
+      };
+
+      li.appendChild(deleteBtn);
+      taskList.appendChild(li);
+
+      taskInput.value = "";
+    } else {
+      alert("Please enter a task!");
+    }
+  }
+</script>
+</body>
+</html>
+
